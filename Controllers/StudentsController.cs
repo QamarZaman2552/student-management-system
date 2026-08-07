@@ -8,19 +8,12 @@ namespace StudentManagementSystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class StudentsController : ControllerBase
+public class StudentsController(StudentDbContext context) : ControllerBase
 {
-    private readonly StudentDbContext _context;
-
-    public StudentsController(StudentDbContext context)
-    {
-        _context = context;
-    }
-
     [HttpGet]
     public async Task<ActionResult<IEnumerable<StudentDto>>> GetAllStudents()
     {
-        var students = await _context.Students
+        var students = await context.Students
             .OrderBy(s => s.Id)
             .Select(s => new StudentDto
             {
@@ -28,7 +21,8 @@ public class StudentsController : ControllerBase
                 Name = s.Name,
                 Email = s.Email,
                 Age = s.Age,
-                Course = s.Course
+                CourseId = s.CourseId,
+                CourseName = s.Course != null ? s.Course.Name : string.Empty
             })
             .ToListAsync();
 
@@ -38,7 +32,9 @@ public class StudentsController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<ActionResult<StudentDto>> GetStudentById(int id)
     {
-        Student? student = await _context.Students.FindAsync(id);
+        Student? student = await context.Students
+            .Include(s => s.Course)
+            .FirstOrDefaultAsync(s => s.Id == id);
 
         if (student == null)
         {
@@ -51,7 +47,8 @@ public class StudentsController : ControllerBase
             Name = student.Name,
             Email = student.Email,
             Age = student.Age,
-            Course = student.Course
+            CourseId = student.CourseId,
+            CourseName = student.Course != null ? student.Course.Name : string.Empty
         });
     }
 
@@ -63,18 +60,37 @@ public class StudentsController : ControllerBase
             return BadRequest(ModelState);
         }
 
+        bool courseExists = await context.Courses.AnyAsync(c => c.Id == studentDto.CourseId);
+
+        if (!courseExists)
+        {
+            return BadRequest(new { message = $"No course found with ID: {studentDto.CourseId}. A valid CourseId is required." });
+        }
+
         var student = new Student
         {
             Name = studentDto.Name,
             Email = studentDto.Email,
             Age = studentDto.Age,
-            Course = studentDto.Course
+            CourseId = studentDto.CourseId
         };
 
-        _context.Students.Add(student);
-        await _context.SaveChangesAsync();
+        context.Students.Add(student);
+        await context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetStudentById), new { id = student.Id }, student);
+        var result = await context.Students
+            .Include(s => s.Course)
+            .FirstOrDefaultAsync(s => s.Id == student.Id);
+
+        return CreatedAtAction(nameof(GetStudentById), new { id = student.Id }, new StudentDto
+        {
+            Id = result!.Id,
+            Name = result.Name,
+            Email = result.Email,
+            Age = result.Age,
+            CourseId = result.CourseId,
+            CourseName = result.Course != null ? result.Course.Name : string.Empty
+        });
     }
 
     [HttpPut("{id:int}")]
@@ -85,42 +101,54 @@ public class StudentsController : ControllerBase
             return BadRequest(ModelState);
         }
 
-        Student? student = await _context.Students.FindAsync(id);
+        Student? student = await context.Students.FindAsync(id);
 
         if (student == null)
         {
             return NotFound(new { message = $"No student found with ID: {id}" });
         }
 
+        bool courseExists = await context.Courses.AnyAsync(c => c.Id == studentDto.CourseId);
+
+        if (!courseExists)
+        {
+            return BadRequest(new { message = $"No course found with ID: {studentDto.CourseId}. A valid CourseId is required." });
+        }
+
         student.Name = studentDto.Name;
         student.Email = studentDto.Email;
         student.Age = studentDto.Age;
-        student.Course = studentDto.Course;
+        student.CourseId = studentDto.CourseId;
 
-        await _context.SaveChangesAsync();
+        await context.SaveChangesAsync();
+
+        var result = await context.Students
+            .Include(s => s.Course)
+            .FirstOrDefaultAsync(s => s.Id == id);
 
         return Ok(new StudentDto
         {
-            Id = student.Id,
-            Name = student.Name,
-            Email = student.Email,
-            Age = student.Age,
-            Course = student.Course
+            Id = result!.Id,
+            Name = result.Name,
+            Email = result.Email,
+            Age = result.Age,
+            CourseId = result.CourseId,
+            CourseName = result.Course != null ? result.Course.Name : string.Empty
         });
     }
 
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteStudent(int id)
     {
-        Student? student = await _context.Students.FindAsync(id);
+        Student? student = await context.Students.FindAsync(id);
 
         if (student == null)
         {
             return NotFound(new { message = $"No student found with ID: {id}" });
         }
 
-        _context.Students.Remove(student);
-        await _context.SaveChangesAsync();
+        context.Students.Remove(student);
+        await context.SaveChangesAsync();
 
         return NoContent();
     }

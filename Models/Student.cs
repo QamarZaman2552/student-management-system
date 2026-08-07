@@ -17,6 +17,7 @@ public class Student
     [Range(1, 150, ErrorMessage = "Age must be between 1 and 150.")]
     public int Age { get; set; }
 
-    [Required(ErrorMessage = "Course is required.")]
-    public string Course { get; set; } = string.Empty;
+    public int CourseId { get; set; }
+
+    public Course? Course { get; set; }
 }

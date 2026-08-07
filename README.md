@@ -1,6 +1,6 @@
-# Student Management Web API
+# Student & Course Management Web API
 
-ASP.NET Core Web API (Day 4 - HisabDo Internship) for managing students using SQL Server with Entity Framework Core (Code First).
+ASP.NET Core Web API (Day 5 - HisabDo Internship). Manages Students and Courses stored in SQL Server, with a **one-to-many relationship** (one Course has many Students) using Entity Framework Core (Code First).
 
 > **Also check the [Screenshot folder](screenshots) for all Swagger, Postman and SQL Server test screenshots.**
 
@@ -22,7 +22,7 @@ Edit `appsettings.json`:
 dotnet ef database update
 ```
 
-This creates the `StudentManagementDB` database and `Students` table.
+Creates/updates the `StudentManagementDB` database. 3 sample courses are seeded automatically.
 
 ### 3. Run the API
 
@@ -32,7 +32,29 @@ dotnet run
 
 Open `http://localhost:5067/swagger` to test with Swagger.
 
+## Database Design
+
+```
+Courses (1) ----< (many) Students
+```
+
+- `Courses`: Id, Name, Description
+- `Students`: Id, Name, Email, Age, CourseId (foreign key)
+
 ## API Endpoints
+
+### Courses
+
+| Method   | Endpoint                 | Description                     |
+|----------|--------------------------|---------------------------------|
+| GET      | /api/courses             | Get all courses                 |
+| GET      | /api/courses/{id}        | Get course by ID                |
+| GET      | /api/courses/{id}/students | Get a course with its students |
+| POST     | /api/courses             | Add a course                    |
+| PUT      | /api/courses/{id}        | Update a course                 |
+| DELETE   | /api/courses/{id}        | Delete a course                 |
+
+### Students
 
 | Method   | Endpoint             | Description          |
 |----------|----------------------|----------------------|
@@ -42,31 +64,41 @@ Open `http://localhost:5067/swagger` to test with Swagger.
 | PUT      | /api/students/{id}   | Update a student     |
 | DELETE   | /api/students/{id}   | Delete a student     |
 
-## Technologies
-
-- ASP.NET Core (.NET 9)
-- Entity Framework Core 9 (Code First)
-- SQL Server 2025
-- Swagger UI
-
 ## Project Structure
 
 ```
 StudentManagementSystem/
 ├── Controllers/
+│   ├── CoursesController.cs
 │   └── StudentsController.cs
 ├── Data/
 │   └── StudentDbContext.cs
 ├── DTOs/
+│   ├── CourseDto.cs
+│   ├── CourseWithStudentsDto.cs
+│   ├── CreateCourseDto.cs
 │   ├── StudentDto.cs
 │   └── CreateStudentDto.cs
 ├── Models/
+│   ├── Course.cs
 │   └── Student.cs
 ├── Migrations/
 └── Program.cs
 ```
 
-## Sample
+## Sample JSON
+
+### Course
+
+```json
+{
+  "id": 1,
+  "name": "Computer Science",
+  "description": "Core programming and computer science fundamentals."
+}
+```
+
+### Student
 
 ```json
 {
@@ -74,7 +106,28 @@ StudentManagementSystem/
   "name": "Qamar Zaman",
   "email": "qamar@hisabdo.com",
   "age": 21,
-  "course": "Computer Science"
+  "courseId": 1,
+  "courseName": "Computer Science"
+}
+```
+
+### Course with its Students
+
+```json
+{
+  "id": 1,
+  "name": "Computer Science",
+  "description": "Core programming and computer science fundamentals.",
+  "students": [
+    {
+      "id": 1,
+      "name": "Qamar Zaman",
+      "email": "qamar@hisabdo.com",
+      "age": 21,
+      "courseId": 1,
+      "courseName": "Computer Science"
+    }
+  ]
 }
 ```
 
@@ -117,3 +170,36 @@ StudentManagementSystem/
 ### Day 4 - SQL Server
 
 ![Day 4 SQL Server](screenshots/SqlServer_Day_4/Screenshot%202026-08-07%20130341.png)
+
+### Day 5 - Swagger
+
+![Day 5 Swagger 1](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135224.png)
+![Day 5 Swagger 2](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135419.png)
+![Day 5 Swagger 3](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135454.png)
+![Day 5 Swagger 4](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135636.png)
+![Day 5 Swagger 5](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135700.png)
+![Day 5 Swagger 6](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135751.png)
+![Day 5 Swagger 7](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140056.png)
+![Day 5 Swagger 8](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140118.png)
+![Day 5 Swagger 9](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140232.png)
+![Day 5 Swagger 10](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140340.png)
+![Day 5 Swagger 11](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140405.png)
+
+### Day 5 - Postman
+
+![Day 5 Postman 1](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20141435.png)
+![Day 5 Postman 2](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143608.png)
+![Day 5 Postman 3](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143651.png)
+![Day 5 Postman 4](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143803.png)
+![Day 5 Postman 5](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144114.png)
+![Day 5 Postman 6](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144206.png)
+![Day 5 Postman 7](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144318.png)
+![Day 5 Postman 8](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144530.png)
+![Day 5 Postman 9](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144551.png)
+![Day 5 Postman 10](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20145136.png)
+![Day 5 Postman 11](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20145216.png)
+
+### Day 5 - SQL Server
+
+![Day 5 SQL Server 1](screenshots/SqlServer_Day_5/Screenshot%202026-08-07%20145538.png)
+![Day 5 SQL Server 2](screenshots/SqlServer_Day_5/Screenshot%202026-08-07%20145841.png)

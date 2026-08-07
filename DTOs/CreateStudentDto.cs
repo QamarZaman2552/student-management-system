@@ -15,6 +15,6 @@ public class CreateStudentDto
     [Range(1, 150, ErrorMessage = "Age must be between 1 and 150.")]
     public int Age { get; set; }
 
-    [Required(ErrorMessage = "Course is required.")]
-    public string Course { get; set; } = string.Empty;
+    [Range(1, int.MaxValue, ErrorMessage = "CourseId is required and must be a valid course.")]
+    public int CourseId { get; set; }
 }
