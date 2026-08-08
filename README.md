@@ -214,82 +214,88 @@ The API follows a layered pattern for clean separation of concerns:
 
 ### Day 3 - Swagger
 
-![Day 3 Swagger 1](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20111836.png)
-![Day 3 Swagger 2](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20112214.png)
-![Day 3 Swagger 3](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20112448.png)
-![Day 3 Swagger 4](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20112631.png)
-![Day 3 Swagger 5](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20112748.png)
-![Day 3 Swagger 6](screenshots/Swagger_Day_3/Screenshot%202026-08-07%20113344.png)
+![Day 3 Swagger 1](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20111836.png)
+![Day 3 Swagger 2](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20112214.png)
+![Day 3 Swagger 3](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20112448.png)
+![Day 3 Swagger 4](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20112631.png)
+![Day 3 Swagger 5](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20112748.png)
+![Day 3 Swagger 6](screenshots/Day_3/Swagger_Day_3/Screenshot%202026-08-07%20113344.png)
 
 ### Day 3 - Postman
 
-![Day 3 Postman 1](screenshots/Postman_Day_3/Screenshot%202026-08-07%20113513.png)
-![Day 3 Postman 2](screenshots/Postman_Day_3/Screenshot%202026-08-07%20113552.png)
-![Day 3 Postman 3](screenshots/Postman_Day_3/Screenshot%202026-08-07%20114221.png)
-![Day 3 Postman 4](screenshots/Postman_Day_3/Screenshot%202026-08-07%20114624.png)
-![Day 3 Postman 5](screenshots/Postman_Day_3/Screenshot%202026-08-07%20114757.png)
-![Day 3 Postman 6](screenshots/Postman_Day_3/Screenshot%202026-08-07%20114915.png)
+![Day 3 Postman 1](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20113513.png)
+![Day 3 Postman 2](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20113552.png)
+![Day 3 Postman 3](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20114221.png)
+![Day 3 Postman 4](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20114624.png)
+![Day 3 Postman 5](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20114757.png)
+![Day 3 Postman 6](screenshots/Day_3/Postman_Day_3/Screenshot%202026-08-07%20114915.png)
 
 ### Day 4 - Swagger
 
-![Day 4 Swagger 1](screenshots/Swagger_Day_4_Task/Screenshot%202026-08-07%20125049.png)
-![Day 4 Swagger 2](screenshots/Swagger_Day_4_Task/Screenshot%202026-08-07%20125225.png)
-![Day 4 Swagger 3](screenshots/Swagger_Day_4_Task/Screenshot%202026-08-07%20125301.png)
-![Day 4 Swagger 4](screenshots/Swagger_Day_4_Task/Screenshot%202026-08-07%20125428.png)
-![Day 4 Swagger 5](screenshots/Swagger_Day_4_Task/Screenshot%202026-08-07%20125459.png)
+![Day 4 Swagger 1](screenshots/Day_4/Swagger_Day_4_Task/Screenshot%202026-08-07%20125049.png)
+![Day 4 Swagger 2](screenshots/Day_4/Swagger_Day_4_Task/Screenshot%202026-08-07%20125225.png)
+![Day 4 Swagger 3](screenshots/Day_4/Swagger_Day_4_Task/Screenshot%202026-08-07%20125301.png)
+![Day 4 Swagger 4](screenshots/Day_4/Swagger_Day_4_Task/Screenshot%202026-08-07%20125428.png)
+![Day 4 Swagger 5](screenshots/Day_4/Swagger_Day_4_Task/Screenshot%202026-08-07%20125459.png)
 
 ### Day 4 - Postman
 
-![Day 4 Postman 1](screenshots/Postman_Day_4_Task/Screenshot%202026-08-07%20125822.png)
-![Day 4 Postman 2](screenshots/Postman_Day_4_Task/Screenshot%202026-08-07%20125858.png)
-![Day 4 Postman 3](screenshots/Postman_Day_4_Task/Screenshot%202026-08-07%20125919.png)
-![Day 4 Postman 4](screenshots/Postman_Day_4_Task/Screenshot%202026-08-07%20125959.png)
-![Day 4 Postman 5](screenshots/Postman_Day_4_Task/Screenshot%202026-08-07%20130050.png)
+![Day 4 Postman 1](screenshots/Day_4/Postman_Day_4_Task/Screenshot%202026-08-07%20125822.png)
+![Day 4 Postman 2](screenshots/Day_4/Postman_Day_4_Task/Screenshot%202026-08-07%20125858.png)
+![Day 4 Postman 3](screenshots/Day_4/Postman_Day_4_Task/Screenshot%202026-08-07%20125919.png)
+![Day 4 Postman 4](screenshots/Day_4/Postman_Day_4_Task/Screenshot%202026-08-07%20125959.png)
+![Day 4 Postman 5](screenshots/Day_4/Postman_Day_4_Task/Screenshot%202026-08-07%20130050.png)
 
 ### Day 4 - SQL Server
 
-![Day 4 SQL Server](screenshots/SqlServer_Day_4/Screenshot%202026-08-07%20130341.png)
+![Day 4 SQL Server](screenshots/Day_4/SqlServer_Day_4/Screenshot%202026-08-07%20130341.png)
 
 ### Day 5 - Swagger
 
-![Day 5 Swagger 1](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135224.png)
-![Day 5 Swagger 2](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135419.png)
-![Day 5 Swagger 3](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135454.png)
-![Day 5 Swagger 4](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135636.png)
-![Day 5 Swagger 5](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135700.png)
-![Day 5 Swagger 6](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20135751.png)
-![Day 5 Swagger 7](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140056.png)
-![Day 5 Swagger 8](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140118.png)
-![Day 5 Swagger 9](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140232.png)
-![Day 5 Swagger 10](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140340.png)
-![Day 5 Swagger 11](screenshots/Swagger_Day_5_Task/Screenshot%202026-08-07%20140405.png)
+![Day 5 Swagger 1](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135224.png)
+![Day 5 Swagger 2](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135419.png)
+![Day 5 Swagger 3](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135454.png)
+![Day 5 Swagger 4](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135636.png)
+![Day 5 Swagger 5](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135700.png)
+![Day 5 Swagger 6](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20135751.png)
+![Day 5 Swagger 7](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20140056.png)
+![Day 5 Swagger 8](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20140118.png)
+![Day 5 Swagger 9](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20140232.png)
+![Day 5 Swagger 10](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20140340.png)
+![Day 5 Swagger 11](screenshots/Day_5/Swagger_Day_5_Task/Screenshot%202026-08-07%20140405.png)
 
 ### Day 5 - Postman
 
-![Day 5 Postman 1](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20141435.png)
-![Day 5 Postman 2](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143608.png)
-![Day 5 Postman 3](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143651.png)
-![Day 5 Postman 4](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20143803.png)
-![Day 5 Postman 5](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144114.png)
-![Day 5 Postman 6](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144206.png)
-![Day 5 Postman 7](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144318.png)
-![Day 5 Postman 8](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144530.png)
-![Day 5 Postman 9](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20144551.png)
-![Day 5 Postman 10](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20145136.png)
-![Day 5 Postman 11](screenshots/Postman_Day_5_Task/Screenshot%202026-08-07%20145216.png)
+![Day 5 Postman 1](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20141435.png)
+![Day 5 Postman 2](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20143608.png)
+![Day 5 Postman 3](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20143651.png)
+![Day 5 Postman 4](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20143803.png)
+![Day 5 Postman 5](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20144114.png)
+![Day 5 Postman 6](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20144206.png)
+![Day 5 Postman 7](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20144318.png)
+![Day 5 Postman 8](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20144530.png)
+![Day 5 Postman 9](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20144551.png)
+![Day 5 Postman 10](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20145136.png)
+![Day 5 Postman 11](screenshots/Day_5/Postman_Day_5_Task/Screenshot%202026-08-07%20145216.png)
 
 ### Day 5 - SQL Server
 
-![Day 5 SQL Server 1](screenshots/SqlServer_Day_5/Screenshot%202026-08-07%20145538.png)
-![Day 5 SQL Server 2](screenshots/SqlServer_Day_5/Screenshot%202026-08-07%20145841.png)
+![Day 5 SQL Server 1](screenshots/Day_5/SqlServer_Day_5/Screenshot%202026-08-07%20145538.png)
+![Day 5 SQL Server 2](screenshots/Day_5/SqlServer_Day_5/Screenshot%202026-08-07%20145841.png)
 
 ### Day 6 - Swagger (JWT Authentication)
 
-![Day 6 Swagger 1](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20200350.png)
-![Day 6 Swagger 2](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20205802.png)
-![Day 6 Swagger 3](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20210049.png)
-![Day 6 Swagger 4](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212220.png)
-![Day 6 Swagger 5](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212233.png)
-![Day 6 Swagger 6](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212302.png)
-![Day 6 Swagger 7](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212339.png)
-![Day 6 Swagger 8](screenshots/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212415.png)
+![Day 6 Swagger 1](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20200350.png)
+![Day 6 Swagger 2](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20205802.png)
+![Day 6 Swagger 3](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20210049.png)
+![Day 6 Swagger 4](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212220.png)
+![Day 6 Swagger 5](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212233.png)
+![Day 6 Swagger 6](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212302.png)
+![Day 6 Swagger 7](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212339.png)
+![Day 6 Swagger 8](screenshots/Day_6/Swagger_Day_6_Task/Auth/Screenshot%202026-08-07%20212415.png)
+
+### Day 6 - SQL Server (Identity tables)
+
+![Day 6 SQL Server 1](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20095509.png)
+![Day 6 SQL Server 2](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20095804.png)
+![Day 6 SQL Server 3](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20100438.png)
