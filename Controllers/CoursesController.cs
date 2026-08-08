@@ -1,84 +1,49 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using StudentManagementSystem.Data;
 using StudentManagementSystem.DTOs;
-using StudentManagementSystem.Models;
+using StudentManagementSystem.Services;
 
 namespace StudentManagementSystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CoursesController(StudentDbContext context) : ControllerBase
+[Authorize]
+public class CoursesController(ICourseService courseService) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CourseDto>>> GetAllCourses()
     {
-        var courses = await context.Courses
-            .OrderBy(c => c.Id)
-            .Select(c => new CourseDto
-            {
-                Id = c.Id,
-                Name = c.Name,
-                Description = c.Description
-            })
-            .ToListAsync();
-
-        return Ok(courses);
+        return Ok(await courseService.GetAllAsync());
     }
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<CourseDto>> GetCourseById(int id)
     {
-        Course? course = await context.Courses.FindAsync(id);
+        var course = await courseService.GetByIdAsync(id);
 
         if (course == null)
         {
             return NotFound(new { message = $"No course found with ID: {id}" });
         }
 
-        return Ok(new CourseDto
-        {
-            Id = course.Id,
-            Name = course.Name,
-            Description = course.Description
-        });
+        return Ok(course);
     }
 
     [HttpGet("{id:int}/students")]
     public async Task<ActionResult<CourseWithStudentsDto>> GetCourseWithStudents(int id)
     {
-        Course? course = await context.Courses
-            .Include(c => c.Students)
-            .FirstOrDefaultAsync(c => c.Id == id);
+        var course = await courseService.GetWithStudentsAsync(id);
 
         if (course == null)
         {
             return NotFound(new { message = $"No course found with ID: {id}" });
         }
 
-        var result = new CourseWithStudentsDto
-        {
-            Id = course.Id,
-            Name = course.Name,
-            Description = course.Description,
-            Students = course.Students
-                .OrderBy(s => s.Id)
-                .Select(s => new StudentDto
-                {
-                    Id = s.Id,
-                    Name = s.Name,
-                    Email = s.Email,
-                    Age = s.Age,
-                    CourseId = s.CourseId,
-                    CourseName = course.Name
-                })
-                .ToList()
-        };
-
-        return Ok(result);
+        return Ok(course);
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<CourseDto>> AddCourse([FromBody] CreateCourseDto courseDto)
     {
         if (!ModelState.IsValid)
@@ -86,24 +51,13 @@ public class CoursesController(StudentDbContext context) : ControllerBase
             return BadRequest(ModelState);
         }
 
-        var course = new Course
-        {
-            Name = courseDto.Name,
-            Description = courseDto.Description
-        };
+        var course = await courseService.CreateAsync(courseDto);
 
-        context.Courses.Add(course);
-        await context.SaveChangesAsync();
-
-        return CreatedAtAction(nameof(GetCourseById), new { id = course.Id }, new CourseDto
-        {
-            Id = course.Id,
-            Name = course.Name,
-            Description = course.Description
-        });
+        return CreatedAtAction(nameof(GetCourseById), new { id = course.Id }, course);
     }
 
     [HttpPut("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateCourse(int id, [FromBody] CreateCourseDto courseDto)
     {
         if (!ModelState.IsValid)
@@ -111,45 +65,16 @@ public class CoursesController(StudentDbContext context) : ControllerBase
             return BadRequest(ModelState);
         }
 
-        Course? course = await context.Courses.FindAsync(id);
+        var course = await courseService.UpdateAsync(id, courseDto);
 
-        if (course == null)
-        {
-            return NotFound(new { message = $"No course found with ID: {id}" });
-        }
-
-        course.Name = courseDto.Name;
-        course.Description = courseDto.Description;
-
-        await context.SaveChangesAsync();
-
-        return Ok(new CourseDto
-        {
-            Id = course.Id,
-            Name = course.Name,
-            Description = course.Description
-        });
+        return Ok(course);
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteCourse(int id)
     {
-        Course? course = await context.Courses.FindAsync(id);
-
-        if (course == null)
-        {
-            return NotFound(new { message = $"No course found with ID: {id}" });
-        }
-
-        bool hasStudents = await context.Students.AnyAsync(s => s.CourseId == id);
-
-        if (hasStudents)
-        {
-            return BadRequest(new { message = "Cannot delete a course that has students assigned." });
-        }
-
-        context.Courses.Remove(course);
-        await context.SaveChangesAsync();
+        await courseService.DeleteAsync(id);
 
         return NoContent();
     }

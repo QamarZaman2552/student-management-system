@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Data;
 
-public class StudentDbContext : DbContext
+public class StudentDbContext : IdentityDbContext<AppUser>
 {
     public StudentDbContext(DbContextOptions<StudentDbContext> options) : base(options)
     {
@@ -37,6 +38,8 @@ public class StudentDbContext : DbContext
             .WithMany(c => c.Students)
             .HasForeignKey(s => s.CourseId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        modelBuilder.Entity<AppUser>().Property(u => u.FullName).HasMaxLength(100);
 
         modelBuilder.Entity<Course>().HasData(
             new Course { Id = 1, Name = "Computer Science", Description = "Core programming and computer science fundamentals." },
