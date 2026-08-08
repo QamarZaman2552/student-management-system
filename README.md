@@ -1,8 +1,8 @@
 # Student & Course Management Web API
 
-ASP.NET Core Web API (Day 6 - HisabDo Internship). Manages Students and Courses stored in SQL Server, with a **one-to-many relationship** (one Course has many Students) using Entity Framework Core (Code First), secured with **JWT Authentication** and role-based authorization (Admin/User).
+ASP.NET Core Web API (Day 7 - HisabDo Internship). Manages Students and Courses stored in SQL Server, with a **one-to-many relationship** (one Course has many Students) using Entity Framework Core (Code First), secured with **JWT Authentication** and role-based authorization (Admin/User).
 
-Built with **Repository and Service patterns** for clean separation of concerns, plus a global **exception handling middleware** that returns proper HTTP status codes (400 / 404 / 500) as JSON.
+Includes **search, filtering and pagination** for students, built with **Repository and Service patterns** for clean separation of concerns, plus a global **exception handling middleware** that returns proper HTTP status codes (400 / 404 / 500) as JSON.
 
 > **Also check the [Screenshot folder](screenshots) for all Swagger, Postman and SQL Server test screenshots.**
 
@@ -73,6 +73,7 @@ Passwords are stored securely using ASP.NET Core Identity password hashing.
 - SQL Server 2025
 - ASP.NET Core Identity + JWT Authentication
 - Role-based Authorization (Admin / User)
+- Search, Filtering & Pagination
 - Swagger UI (with JWT support)
 
 ## Database Design
@@ -109,11 +110,54 @@ Courses (1) ----< (many) Students
 
 | Method   | Endpoint             | Description          |
 |----------|----------------------|----------------------|
-| GET      | /api/students        | Get all students     |
+| GET      | /api/students        | Get all students (search, filter, pagination) |
 | GET      | /api/students/{id}   | Get student by ID    |
 | POST     | /api/students        | Add a student        |
 | PUT      | /api/students/{id}   | Update a student     |
 | DELETE   | /api/students/{id}   | Delete a student     |
+
+## Search, Filtering & Pagination
+
+GET /api/students supports the following query parameters (all optional):
+
+| Parameter  | Type    | Description                                             |
+|------------|---------|---------------------------------------------------------|
+| search     | string  | Search by name or email (case-insensitive, partial match) |
+| courseId   | int     | Filter by course ID                                     |
+| age        | int     | Filter by exact age                                     |
+| pageNumber | int     | Page number (default 1, min 1)                          |
+| pageSize   | int     | Items per page (default 10, 1-100)                      |
+
+Examples:
+
+```
+GET /api/students?pageNumber=1&pageSize=10
+GET /api/students?search=qamar
+GET /api/students?courseId=2
+GET /api/students?age=20
+GET /api/students?search=q&courseId=2&pageNumber=1&pageSize=5
+```
+
+### Paginated Response
+
+```json
+{
+  "items": [
+    {
+      "id": 13,
+      "name": "Wasif",
+      "email": "Wasif@example.com",
+      "age": 20,
+      "courseId": 2,
+      "courseName": "Data Science"
+    }
+  ],
+  "pageNumber": 1,
+  "pageSize": 10,
+  "totalCount": 4,
+  "totalPages": 1
+}
+```
 
 ## Project Structure
 
@@ -299,3 +343,28 @@ The API follows a layered pattern for clean separation of concerns:
 ![Day 6 SQL Server 1](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20095509.png)
 ![Day 6 SQL Server 2](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20095804.png)
 ![Day 6 SQL Server 3](screenshots/Day_6/SqlServer_Day_6/Screenshot%202026-08-08%20100438.png)
+
+### Day 7 - Swagger (Search, Filtering & Pagination)
+
+![Day 7 Swagger 1](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20120435.png)
+![Day 7 Swagger 2](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20120514.png)
+![Day 7 Swagger 3](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20120942.png)
+![Day 7 Swagger 4](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121012.png)
+![Day 7 Swagger 5](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121026.png)
+![Day 7 Swagger 6](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121249.png)
+![Day 7 Swagger 7](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121321.png)
+![Day 7 Swagger 8](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121420.png)
+![Day 7 Swagger 9](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121532.png)
+![Day 7 Swagger 10](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121549.png)
+![Day 7 Swagger 11](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121633.png)
+![Day 7 Swagger 12](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121647.png)
+![Day 7 Swagger 13](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121702.png)
+![Day 7 Swagger 14](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121718.png)
+![Day 7 Swagger 15](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121747.png)
+![Day 7 Swagger 16](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121830.png)
+![Day 7 Swagger 17](screenshots/Day_7/Swagger_Day_7_Task/Screenshot%202026-08-08%20121849.png)
+
+### Day 7 - SQL Server
+
+![Day 7 SQL Server 1](screenshots/Day_7/SqlServer_Day_7/Screenshot%202026-08-08%20122315.png)
+![Day 7 SQL Server 2](screenshots/Day_7/SqlServer_Day_7/Screenshot%202026-08-08%20122429.png)

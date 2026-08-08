@@ -11,9 +11,9 @@ namespace StudentManagementSystem.Controllers;
 public class StudentsController(IStudentService studentService) : ControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<StudentDto>>> GetAllStudents()
+    public async Task<ActionResult<PagedResultDto<StudentDto>>> GetAllStudents([FromQuery] StudentQueryDto query)
     {
-        return Ok(await studentService.GetAllAsync());
+        return Ok(await studentService.GetAllAsync(query));
     }
 
     [HttpGet("{id:int}")]

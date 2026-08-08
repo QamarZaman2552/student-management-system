@@ -1,17 +1,43 @@
 using Microsoft.EntityFrameworkCore;
 using StudentManagementSystem.Data;
+using StudentManagementSystem.DTOs;
 using StudentManagementSystem.Models;
 
 namespace StudentManagementSystem.Repositories;
 
 public class StudentRepository(StudentDbContext context) : IStudentRepository
 {
-    public async Task<List<Student>> GetAllAsync()
+    public async Task<(List<Student> Items, int TotalCount)> FindAsync(StudentQueryDto query)
     {
-        return await context.Students
+        IQueryable<Student> students = context.Students
             .Include(s => s.Course)
+            .AsNoTracking();
+
+        if (!string.IsNullOrWhiteSpace(query.Search))
+        {
+            students = students.Where(s =>
+                s.Name.Contains(query.Search) || s.Email.Contains(query.Search));
+        }
+
+        if (query.CourseId.HasValue)
+        {
+            students = students.Where(s => s.CourseId == query.CourseId.Value);
+        }
+
+        if (query.Age.HasValue)
+        {
+            students = students.Where(s => s.Age == query.Age.Value);
+        }
+
+        var totalCount = await students.CountAsync();
+
+        var items = await students
             .OrderBy(s => s.Id)
+            .Skip((query.PageNumber - 1) * query.PageSize)
+            .Take(query.PageSize)
             .ToListAsync();
+
+        return (items, totalCount);
     }
 
     public async Task<Student?> GetByIdAsync(int id)

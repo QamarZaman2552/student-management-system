@@ -6,10 +6,18 @@ namespace StudentManagementSystem.Services;
 
 public class StudentService(IStudentRepository repository) : IStudentService
 {
-    public async Task<IEnumerable<StudentDto>> GetAllAsync()
+    public async Task<PagedResultDto<StudentDto>> GetAllAsync(StudentQueryDto query)
     {
-        var students = await repository.GetAllAsync();
-        return students.Select(ToDto);
+        var (items, totalCount) = await repository.FindAsync(query);
+
+        return new PagedResultDto<StudentDto>
+        {
+            Items = items.Select(ToDto).ToList(),
+            PageNumber = query.PageNumber,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = (int)Math.Ceiling(totalCount / (double)query.PageSize)
+        };
     }
 
     public async Task<StudentDto?> GetByIdAsync(int id)
